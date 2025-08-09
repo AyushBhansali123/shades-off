@@ -1,4 +1,23 @@
 <!DOCTYPE html>
+<!--
+SHADES OFF - Greyscale Guessing Game
+
+How to run: Open index.html in any modern browser or serve via HTTP
+
+Controls:
+- Click/tap on the greyscale bar to make your guess (commits instantly)  
+- Enter key (when bar is focused): commits a center guess (128)
+
+Game Modes:
+- Normal: Shade stays visible until you click
+- Flash: Shade appears for 800ms, then you guess from memory  
+- Blink: Shade appears twice (500ms each) with pause, then you guess
+- Sudden Death: Shade appears for 500ms, 5s timer to guess, wrong guess (delta >15) ends run
+
+Scoring: Based on delta from target using formula: Math.max(0, 100 * Math.pow(1 - delta/255, 2.2))
+
+Tests: Add ?test=true to URL to run unit tests in console
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -16,13 +35,49 @@
     <main class="card">
       <div class="row controls-top">
         <div class="control-group">
-          <label>Mode</label>
-          <button id="peekToggle" class="btn" aria-pressed="false">Peek (hard)</button>
+          <label>Game Mode</label>
+          <div class="custom-dropdown" id="gameModeDropdown">
+            <div class="dropdown-selected" id="dropdownSelected">
+              <span class="selected-text">Normal</span>
+              <svg class="dropdown-arrow" viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+              </svg>
+            </div>
+            <div class="dropdown-options" id="dropdownOptions">
+              <div class="dropdown-option" data-value="normal">
+                <div class="option-main">Normal</div>
+                <div class="option-desc">Unlimited time</div>
+              </div>
+              <div class="dropdown-option" data-value="flash">
+                <div class="option-main">Flash</div>
+                <div class="option-desc">800ms memory</div>
+              </div>
+              <div class="dropdown-option" data-value="blink">
+                <div class="option-main">Blink</div>
+                <div class="option-desc">Double peek</div>
+              </div>
+              <div class="dropdown-option" data-value="sudden-death">
+                <div class="option-main">Sudden Death</div>
+                <div class="option-desc">5s timer, one chance</div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="control-group">
           <label>&nbsp;</label>
           <button id="new-round" class="btn primary">New Game</button>
         </div>
+      </div>
+
+      <div class="mode-description" id="modeDescription">
+        Shade stays visible until you click.
+      </div>
+
+      <div class="timer-container" id="timerContainer" style="display: none;">
+        <div class="timer-bar">
+          <div class="timer-fill" id="timerFill"></div>
+        </div>
+        <div class="timer-text" id="timerText">5s</div>
       </div>
 
       <div class="swatches">
@@ -78,6 +133,23 @@
   </div>
 
   <div id="ariaLive" class="sr-only" aria-live="polite"></div>
+  
+  <!-- Custom Notification System -->
+  <div class="notification-overlay" id="notificationOverlay">
+    <div class="notification-modal" id="notificationModal">
+      <div class="notification-header">
+        <div class="notification-icon" id="notificationIcon">🎮</div>
+        <div class="notification-title" id="notificationTitle">Game Over</div>
+      </div>
+      <div class="notification-body" id="notificationBody">
+        Your message here
+      </div>
+      <div class="notification-actions">
+        <button class="notification-btn primary" id="notificationConfirm">New Game</button>
+        <button class="notification-btn secondary" id="notificationCancel">Close</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
