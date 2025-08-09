@@ -2,48 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shades Off</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shades Off — Guess the Shade</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main>
-    <h1>Shades Off</h1>
-    <section class="swatches">
-      <div class="swatch">
-        <div class="label">Target</div>
-        <div id="targetSwatch" class="sample">Hidden</div>
+  <div class="page">
+    <header class="top">
+      <h1 class="title">Shades Off</h1>
+      <p class="tagline">Guess the correct shade on the grayscale bar.</p>
+    </header>
+
+    <main class="card">
+      <div class="row controls-top">
+        <div class="control-group">
+          <label>Mode</label>
+          <button id="peekToggle" class="btn" aria-pressed="false">Peek (hard)</button>
+        </div>
+        <div class="control-group">
+          <label>&nbsp;</label>
+          <button id="new-round" class="btn primary">New Game</button>
+        </div>
       </div>
-      <div class="swatch">
-        <div class="label">Your Guess</div>
-        <div id="guessSwatch" class="sample"></div>
+
+      <div class="swatches">
+        <div class="swatch">
+          <div class="sample" id="target-sample">Hidden</div>
+          <div class="swatch-label">Target</div>
+        </div>
+
+        <div class="swatch">
+          <div class="sample" id="guess-sample">Guess</div>
+          <div class="swatch-label">Your Guess</div>
+        </div>
       </div>
-    </section>
 
-    <div id="barWrap">
-      <div id="bar" tabindex="0" role="slider" aria-label="Guess a gray value"></div>
-      <div id="ticks"></div>
-    </div>
+      <div class="bar-wrap">
+        <div class="bar" id="guess-bar" tabindex="0" role="slider" aria-label="Guess a value on the bar">
+          <div class="ticks" id="ticks" aria-hidden="true"></div>
+        </div>
+      </div>
 
-    <section class="results">
-      <span id="deltaPill" class="pill"></span>
-      <span id="scorePill" class="pill"></span>
-    </section>
+      <div class="results">
+        <div class="pill" id="delta-pill">Δ: <strong id="delta-val">0</strong></div>
+        <div class="pill" id="score-pill">Score: <strong id="last-score">0</strong></div>
+        <div class="pill">Avg: <strong id="avg-score">0</strong></div>
+      </div>
 
-    <section class="stats">
-      Round <span id="roundNum">0</span>
-      &nbsp; Last <span id="lastScore">0</span>
-      &nbsp; Avg <span id="avgScore">0</span>
-    </section>
+      <div class="stats">
+        <div>Rounds: <span id="rounds">0</span></div>
+        <div>Total Score: <span id="total-score">0</span></div>
+      </div>
+    </main>
 
-    <section class="controls">
-      <button id="newGame">New Game</button>
-      <button id="peekToggle" aria-pressed="false">Peek (hard mode)</button>
-    </section>
+    <footer class="footer">
+      <a class="github-button" href="https://github.com/AyushBhansali123/shades-off" target="_blank" rel="noopener noreferrer">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 
+            5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+            -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+            -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 
+            1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+            -1.78-.2-3.64-.89-3.64-3.95 
+            0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 
+            0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 
+            1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 
+            1.92.08 2.12.51.56.82 1.27.82 2.15 
+            0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 
+            1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 
+            8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        View GitHub Repository
+      </a>
+    </footer>
+  </div>
 
-    <div id="ariaLive" class="sr-only" aria-live="polite"></div>
-  </main>
+  <div id="ariaLive" class="sr-only" aria-live="polite"></div>
 
-  <script src="main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
