@@ -1,22 +1,27 @@
-# Shades Off
+<!-- Banner -->
+>[!TIP]
+>To toggle difficulty, press the Peak button.
 
-Tiny browser game guessing grayscale values.
+<!-- Header -->
+<div align="center">
+  <img width="1197" height="119" alt="ShadesOffBanner" src="https://github.com/user-attachments/assets/bef2f53c-ac98-40eb-9c83-e8c14bd9756a" />
+  <h3>Guess the correct shade on the grayscale bar.</h3>
+</div>
 
-## Run
-Open `index.html` in any browser.
-
-## Controls
-- Click or tap the bar to guess.
-- Press **Enter** while the bar is focused to guess the middle value (128).
-- **New Game** resets scores.
-- Toggle **Peek (hard mode)** to hide the target; hold **Space** to peek.
-
+<!-- Scoring Info -->
 ## Scoring
-```
-function scoreFromDelta(d) {
-  const n = d / 255;
-  const s = Math.max(0, 100 * Math.pow(1 - n, 2.2));
-  return Math.round(s);
+```js
+function endRound(guess) {
+  const delta = Math.abs(guess - targetValue); // difference in slider units
+  const score = Math.max(0, 100 - delta); // higher score for smaller delta
+
+  document.getElementById("deltaPill").textContent = `Δ ${delta}`;
+  document.getElementById("scorePill").textContent = `${score} pts`;
+
+  totalScore += score;
+  round++;
+  document.getElementById("roundNum").textContent = round;
+  document.getElementById("lastScore").textContent = score;
+  document.getElementById("avgScore").textContent = Math.round(totalScore / round);
 }
 ```
-
