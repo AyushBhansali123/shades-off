@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shades Off</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Shades Off</h1>
+    <section class="swatches">
+      <div class="swatch">
+        <div class="label">Target</div>
+        <div id="targetSwatch" class="sample">Hidden</div>
+      </div>
+      <div class="swatch">
+        <div class="label">Your Guess</div>
+        <div id="guessSwatch" class="sample"></div>
+      </div>
+    </section>
 
+    <div id="barWrap">
+      <div id="bar" tabindex="0" role="slider" aria-label="Guess a gray value"></div>
+      <div id="ticks"></div>
+    </div>
+
+    <section class="results">
+      <span id="deltaPill" class="pill"></span>
+      <span id="scorePill" class="pill"></span>
+    </section>
+
+    <section class="stats">
+      Round <span id="roundNum">0</span>
+      &nbsp; Last <span id="lastScore">0</span>
+      &nbsp; Avg <span id="avgScore">0</span>
+    </section>
+
+    <section class="controls">
+      <button id="newGame">New Game</button>
+      <button id="peekToggle" aria-pressed="false">Peek (hard mode)</button>
+    </section>
+
+    <div id="ariaLive" class="sr-only" aria-live="polite"></div>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
