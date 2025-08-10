@@ -22,14 +22,16 @@ Tests: Add ?test=true to URL to run unit tests in console
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shades Off — Guess the Shade</title>
+  <meta name="description" content="Shades Off is a free online greyscale guessing game. Test your color perception and beat your high score in this quick, addictive challenge.">
+  <link rel="canonical" href="https://ayushbhansali123.github.io/shades-off/">
+  <title>Shades Off – Play the Greyscale Guessing Game Online</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="page">
     <header class="top">
-      <h1 class="title">Shades Off</h1>
-      <p class="tagline">Guess the correct shade on the grayscale bar.</p>
+      <h1 class="title">Shades Off – Free Greyscale Guessing Game</h1>
+      <p class="tagline">Welcome to Shades Off, a free online greyscale guessing game that tests your color perception. Click on the gradient to match the target shade and see how accurate you are!</p>
     </header>
 
     <!-- AD SLOT (Native Banner) -->
@@ -73,7 +75,7 @@ Tests: Add ?test=true to URL to run unit tests in console
         </div>
         <div class="control-group">
           <label>&nbsp;</label>
-          <button id="new-round" class="btn primary">New Game</button>
+          <button id="new-round" class="btn primary">Play Greyscale Guessing Game</button>
         </div>
       </div>
 
@@ -174,7 +176,19 @@ Tests: Add ?test=true to URL to run unit tests in console
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Shades Off",
+  "url": "https://ayushbhansali123.github.io/shades-off/",
+  "applicationCategory": "Game",
+  "operatingSystem": "Web",
+  "description": "A free greyscale guessing game. Test your color perception and try to beat your high score."
+}
+</script>
   
   <script>
 (function(){

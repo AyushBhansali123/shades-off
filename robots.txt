@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ayushbhansali123.github.io/shades-off/sitemap.xml
