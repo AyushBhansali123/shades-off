@@ -52,6 +52,19 @@ body{
   font-size: clamp(12px, 1.6vw, 14px);
 }
 
+/* Ad slot */
+.ad-slot{
+  margin: 16px 0;
+  text-align: center;
+  min-height: 120px;   /* reserve space to avoid CLS */
+  display: grid;
+  place-items: center;
+}
+@media (max-height: 600px){
+  /* On very short screens, give the game more room */
+  .ad-slot{ margin: 8px 0; min-height: 90px; }
+}
+
 /* Main card */
 .card{
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));

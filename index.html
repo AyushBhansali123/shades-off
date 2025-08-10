@@ -32,6 +32,13 @@ Tests: Add ?test=true to URL to run unit tests in console
       <p class="tagline">Guess the correct shade on the grayscale bar.</p>
     </header>
 
+    <!-- AD SLOT (Native Banner) -->
+    <div class="ad-slot" aria-label="Sponsored">
+      <script async data-cfasync="false" src="//pl27385066.profitableratecpm.com/da1cbe0447072c0bb8709a657bf4a75a/invoke.js"></script>
+      <div id="container-da1cbe0447072c0bb8709a657bf4a75a"></div>
+    </div>
+    <!-- /AD SLOT -->
+
     <main class="card">
       <div class="row controls-top">
         <div class="control-group">
@@ -152,5 +159,26 @@ Tests: Add ?test=true to URL to run unit tests in console
   </div>
 
   <script src="script.js"></script>
+  
+  <script>
+(function(){
+  const wrapper = document.querySelector('.ad-slot');
+  if(!('IntersectionObserver' in window) || !wrapper) return;
+
+  let mounted = false;
+  const mount = () => {
+    if (mounted) return;
+    mounted = true;
+    // If the network requires the script to appear before the container,
+    // we already placed it that way in HTML. Nothing else to do here.
+    // (We keep this hook in case we switch networks later.)
+  };
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e => { if(e.isIntersecting) { mount(); io.disconnect(); }});
+  }, { rootMargin: '200px' });
+  io.observe(wrapper);
+})();
+</script>
 </body>
 </html>
